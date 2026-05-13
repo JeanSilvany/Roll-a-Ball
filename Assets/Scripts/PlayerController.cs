@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
@@ -15,24 +16,16 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnMove(InputValue moventValue)
-    {
-        Vector2 movementVector = moventValue.Get<Vector2>();
+    void OnMove(InputValue inputValue){
+        Vector2 movementVector = inputValue.Get<Vector2>();
 
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         Vector3 movement = new(movementX, 0f, movementY);
-        
+
         rb.AddForce(movement * speed);
     }
 }
